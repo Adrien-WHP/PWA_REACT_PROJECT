@@ -17,26 +17,14 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
-      if('serviceworker' in navigator){
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./serviceWorker.js').then((reg) => {
-            console.log('Worker registrered');
-          }).catch((err) => {
-            console.log('Error in service worker', err)
-          })
-        })
-      }
+      if('serviceWorker' in navigator) {
+        console.log('Service Worker detected');
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./serviceworker.js')
+                    .then((reg) => console.log('Success: ', reg.scope))
+                    .catch((err) => console.log('Failure: ', err));
+            })
+        }
     </script>
-    <!--<script>
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        document.body.classList.add('resize-animation-stopper');
-        clearTimeout(resize.Timer);
-        resizeTimer = setTimeout(() => {
-          document.body.classList.remove('resize-animation-stopper');
-        },400);
-      });
-    </script>
-  -->
   </body>
 </html>
